@@ -1,7 +1,5 @@
 #-----------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.5)
-#-----------------------------------------------------------------------------
-project(GenerateCLP)
+project(GenerateCLP LANGUAGES C CXX)
 
 #-----------------------------------------------------------------------------
 # Set a default build type if none was specified

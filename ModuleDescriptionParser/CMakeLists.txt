@@ -1,7 +1,4 @@
-#-----------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.5)
-#-----------------------------------------------------------------------------
-project(ModuleDescriptionParser CXX)
+project(ModuleDescriptionParser LANGUAGES CXX)
 
 #-----------------------------------------------------------------------------
 # Set a default build type if none was specified
