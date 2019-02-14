@@ -151,7 +151,6 @@ endif()
 # --------------------------------------------------------------------------
 set(lib_name ModuleDescriptionParser)
 include(GenerateExportHeader)
-add_compiler_export_flags()
 add_library(${lib_name} ${ModuleDescriptionParser_SRCS})
 generate_export_header(${lib_name}
   BASE_NAME ${lib_name}
@@ -181,12 +180,19 @@ endif()
 
 target_link_libraries(${lib_name} ${libs})
 ## target_link_libraries(${lib_name}-static ${link_libs})
+set(USE_COMPILER_HIDDEN_VISIBILITY ON)
+if (USE_COMPILER_HIDDEN_VISIBILITY) 
+  # Prefer to use target properties supported by newer cmake 
+  set_target_properties(${lib_name} PROPERTIES CXX_VISIBILITY_PRESET hidden) 
+  set_target_properties(${lib_name} PROPERTIES C_VISIBILITY_PRESET hidden) 
+  set_target_properties(${lib_name} PROPERTIES VISIBILITY_INLINES_HIDDEN 1) 
+endif()
 
 #
 # Apply user-defined properties to the library target.
 #
 if(ModuleDescriptionParser_LIBRARY_PROPERTIES)
-  set_target_properties(${lib_name} PROPERTIES ${ModuleDescriptionParser_LIBRARY_PROPERTIES})
+  set_target_properties(${lib_name} PROPERTIES ${ModuleDescriptionParser_LIBRARY_PROPERTIES} )
 endif()
 
 # --------------------------------------------------------------------------
